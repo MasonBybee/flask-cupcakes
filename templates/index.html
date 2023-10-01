@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block title %} Home {% endblock %} {% block content
+%}
+<div class="container">
+  <h1>See all the cupcakes!</h1>
+
+  <ul id="cupcake-ul" class="list-group"></ul>
+</div>
+
+<div class="container mt-5">
+  <h2>Add a new cupcake!</h2>
+  <form id="create-cupcake-form">
+    {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
+    'hidden'%}
+    <div class="form-group mt-3">
+      {{field.label}} {% if field.type == 'SelectField' %}
+      {{field(class_="form-select form-control")}} {% else %}
+      {{field(class_="form-control") }} {% endif %} {% for err in field.errors
+      %}
+      <small class="form-text text-danger"> {{err}} </small>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <button class="btn btn-success mt-2">Submit</button>
+  </form>
+</div>
+{% endblock %}
